@@ -890,7 +890,7 @@ const fetchPrice = async (symbol) => {
 };
 
 const fetchMultiplePrices = async (symbols) => {
-  const cacheBuster = `?force=true&_t=${Date.now()}`;
+  const cacheBuster = `?force=false&_t=${Date.now()}`;
   const headers = { 'Content-Type': 'application/json' };
   const token = getToken();
   if (token) {
