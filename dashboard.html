@@ -279,6 +279,11 @@
     <script src="js/dashboard.js?v=3"></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        // Socket.io does not work on serverless environments like Vercel. Skip to prevent constant 404 polling.
+        if (window.location.hostname.endsWith('.vercel.app') || (typeof API_BASE_ORIGIN !== 'undefined' && API_BASE_ORIGIN.includes('.vercel.app'))) {
+          console.log("Socket.io connection bypassed on Vercel serverless environment.");
+          return;
+        }
         try {
           const socket = io(API_BASE_ORIGIN); // Connects to the server to increment active connections
         } catch (e) {
