@@ -2,10 +2,6 @@
    Help & Feedback JS
    ═══════════════════════════════════════════════════════ */
 
-const API_BASE_ORIGIN =
-(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:')
-  ? 'http://localhost:5000'
-  : window.location.origin;
 
 // ── Cursor blob ────────────────────────────────────────
 const blob = document.getElementById('cursorBlob');

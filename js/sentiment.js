@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const marketChartContainer = document.getElementById('marketChartContainer');
   const newsList = document.getElementById('newsList');
 
-  const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:' ? 'http://localhost:5000/api' : window.location.origin + '/api';
 
   // Fetch the sentiment data from backend
   async function fetchSentiment() {

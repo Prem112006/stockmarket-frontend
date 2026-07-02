@@ -2,11 +2,6 @@
    Admin Panel JS — SMP Admin Dashboard
    ═══════════════════════════════════════════════════════ */
 
-// Smart API_BASE — works with Live Server (5500) AND direct access
-const API_BASE_ORIGIN =
-  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:')
-    ? 'http://localhost:5000'
-    : window.location.origin;
 const API = API_BASE_ORIGIN + '/api/admin';
 
 let adminToken = localStorage.getItem('adminToken') || '';

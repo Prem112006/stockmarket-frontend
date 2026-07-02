@@ -309,6 +309,7 @@
     </div>
   </div>
 
+  <script src="js/config.js"></script>
   <script>
     // Cursor blob
     const blob = document.getElementById('cursorBlob');
@@ -328,8 +329,6 @@
     document.documentElement.setAttribute('data-theme', 'dark');
 
     // Admin Login
-    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') ? 'http://localhost:5000' : window.location.origin;
-
     document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('loginBtn');
@@ -344,7 +343,7 @@
       const password = document.getElementById('adminPassword').value;
 
       try {
-        const res = await fetch(API_BASE + '/api/admin/login', {
+        const res = await fetch(API_BASE_ORIGIN + '/api/admin/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password })
