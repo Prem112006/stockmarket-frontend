@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Stock Market Prediction</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="fixed-top-right">
+      <button id="themeToggle" class="btn btn-secondary" type="button" title="Toggle Theme">
+        <span id="themeIcon">☀️</span>
+      </button>
+    </div>
+    <div class="centered">
+      <div class="card" style="max-width: 520px; width: 100%;">
+        <h1 style="margin-top:0;">Register</h1>
+
+        <form id="registerForm" class="form">
+          <label>
+            Name
+            <input type="text" name="name" required placeholder="Your name" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="you@example.com" />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" required minlength="6" placeholder="Min 6 characters" />
+          </label>
+
+          <button class="btn" type="submit">Create account</button>
+
+          <p id="registerMsg" class="msg"></p>
+
+          <p class="muted" style="margin-bottom:0;">
+            Already have an account?
+            <a href="login.html">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+  </body>
+</html>

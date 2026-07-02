@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Stock Market Prediction</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+  <style>
+    .about-card {
+      background: var(--surface-low);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-card p {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor-blob" id="cursorBlob"></div>
+
+  <!-- Top Right Action Bar -->
+  <div class="fixed-top-right">
+    <!-- Auth Buttons -->
+    <div id="authButtons" class="auth-buttons" style="display: none;">
+      <a href="login.html" class="btn btn-secondary">Login</a>
+      <a href="register.html" class="btn">Register</a>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button id="themeToggle" class="btn btn-secondary" type="button" title="Toggle Theme">
+      <span id="themeIcon">☀️</span>
+    </button>
+
+    <!-- Profile Button -->
+    <button id="profileBtn" class="profile-avatar-btn" type="button" style="display: none;">
+      <span id="profileInitial">P</span>
+    </button>
+  </div>
+
+  <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle-cb" style="display: none;" />
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 12px;">
+        <div class="brand" style="margin-bottom:0;">SMP</div>
+        <label for="sidebar-toggle" class="sidebar-close-label">
+          <span class="material-icons-round">close</span>
+        </label>
+      </div>
+
+      <!-- Investment Summary Card -->
+      <div class="investment-card" id="investmentCard">
+        <div class="investment-label">Total Investment</div>
+        <div class="investment-row">
+          <span class="investment-amount" id="totalInvestment">—</span>
+          <span class="investment-change" id="investmentChange"></span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link" href="dashboard.html">
+          <span class="material-icons-round" style="font-size:20px">dashboard</span>
+          Dashboard
+        </a>
+        <a class="nav-link" href="prediction.html">
+          <span class="material-icons-round" style="font-size:20px">query_stats</span>
+          Prediction
+        </a>
+        <a class="nav-link" href="portfolio.html">
+          <span class="material-icons-round"
+            style="font-size:20px; vertical-align:text-bottom;">account_balance_wallet</span> Portfolio
+        </a>
+        <a class="nav-link" href="sentiment.html">
+          <span class="material-icons-round" style="font-size:20px; vertical-align:text-bottom;">analytics</span>
+          Sentiment
+        </a>
+        <a class="nav-link" href="help-feedback.html">
+          <span class="material-icons-round" style="font-size:20px; vertical-align:text-bottom;">forum</span> Help &
+          Feedback
+        </a>
+        <a class="nav-link active" href="about-us.html">
+          <span class="material-icons-round" style="font-size:20px; vertical-align:text-bottom;">info</span> About Us
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="logoutBtn" class="btn btn-secondary btn-full" type="button">
+          <span class="material-icons-round" style="font-size:18px">logout</span>
+          Sign Out
+        </button>
+      </div>
+    </aside>
+    <label for="sidebar-toggle" class="sidebar-overlay-label"></label>
+
+    <main class="main">
+      <header class="topbar">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <label for="sidebar-toggle" class="sidebar-toggle-label">
+            <span class="material-icons-round">menu</span>
+          </label>
+          <div>
+            <h1 class="page-title">About Us</h1>
+            <p style="margin-top:4px; color:var(--muted);">Learn more about our project and mission.</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="about-card">
+        <h2 style="font-family:'Manrope',sans-serif; font-size:24px; margin-bottom: 25px;">Stock Market Prediction (SMP)
+        </h2>
+        <div style="font-size: 16px; color: var(--text-muted); line-height: 1.8;">
+          <p>
+            <strong>Stock Market Prediction (SMP)</strong> is a comprehensive platform designed to give users insight
+            into the stock market through AI-driven predictive modeling.
+          </p>
+          <p>
+            It allows users to track their favorite stocks, add them to watchlists, maintain a virtual portfolio, and
+            execute simulated trades based on predictions. We prioritize empowering absolute beginners with easily
+            digestible knowledge in real-time.
+          </p>
+          <p>
+            The platform aims to demystify stock market trends using Machine Learning algorithms (like LSTM & Random
+            Forest) alongside advanced real-time sentiment analysis using FinBERT. This helps traders, learners, and
+            analysts to make highly informed decisions over traditional speculation.
+          </p>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--border); margin: 35px 0;" />
+
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 15px;">Contact Information</h3>
+        <div
+          style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 15px; color: var(--muted);">
+          <span class="material-icons-round" style="font-size:20px;">email</span>SMP@gamil.com
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--muted);">
+          <span class="material-icons-round" style="font-size:20px;">location_on</span> SMP Headquarters, Mehsana, India
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+
+</html>

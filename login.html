@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Stock Market Prediction</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</head>
+
+<body>
+  <div class="fixed-top-right">
+    <button id="themeToggle" class="btn btn-secondary" type="button" title="Toggle Theme">
+      <span id="themeIcon">☀️</span>
+    </button>
+  </div>
+  <div class="centered">
+    <div class="card" style="max-width: 520px; width: 100%;">
+      <h1 style="margin-top:0;">Login</h1>
+
+      <form id="loginForm" class="form">
+        <div id="credentialsSection">
+          <label>
+            Email
+            <input type="email" name="email" id="loginEmail" required placeholder="you@example.com" />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" id="loginPassword" required placeholder="••••••" />
+          </label>
+        </div>
+
+        <div id="otpSection" style="display: none;">
+          <label>
+            Enter 6-digit OTP (Check Email)
+            <input type="text" name="otp" id="loginOtpInput" placeholder="123456" maxlength="6" pattern="[0-9]{6}" />
+          </label>
+        </div>
+
+        <button class="btn" type="submit" id="loginSubmitBtn">Login</button>
+
+        <p style="margin: 10px 0 0; text-align: right;">
+          <a href="forgot-password.html" style="font-size: 0.98em;">Forgot password?</a>
+        </p>
+
+        <p id="loginMsg" class="msg"></p>
+
+        <p class="muted" style="margin-bottom:0;">
+          Don’t have an account?
+          <a href="register.html">Register</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/auth.js?v=2"></script>
+</body>
+
+</html>

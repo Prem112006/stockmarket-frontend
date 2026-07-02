@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help & Feedback - Stock Market Prediction</title>
+  <meta name="description" content="Submit help and feedback for Stock Market Prediction platform." />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+  <style>
+    .feedback-form {
+      background: var(--surface-low);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      max-width: 600px;
+    }
+
+    .star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 5px;
+      margin-bottom: 20px;
+    }
+
+    .star-rating input {
+      display: none;
+    }
+
+    .star-rating label {
+      font-size: 24px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .star-rating input:checked~label,
+    .star-rating label:hover,
+    .star-rating label:hover~label {
+      color: #f5a623;
+    }
+
+    #ratingContainer {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor-blob" id="cursorBlob"></div>
+
+  <!-- Top Right Action Bar -->
+  <div class="fixed-top-right">
+    <!-- Auth Buttons -->
+    <div id="authButtons" class="auth-buttons" style="display: none;">
+      <a href="login.html" class="btn btn-secondary">Login</a>
+      <a href="register.html" class="btn">Register</a>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button id="themeToggle" class="btn btn-secondary" type="button" title="Toggle Theme">
+      <span id="themeIcon">☀️</span>
+    </button>
+
+    <!-- Profile Button -->
+    <button id="profileBtn" class="profile-avatar-btn" type="button" style="display: none;">
+      <span id="profileInitial">P</span>
+    </button>
+  </div>
+
+  <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle-cb" style="display: none;" />
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 12px;">
+        <div class="brand" style="margin-bottom:0;">SMP</div>
+        <label for="sidebar-toggle" class="sidebar-close-label">
+          <span class="material-icons-round">close</span>
+        </label>
+      </div>
+
+      <!-- Investment Summary Card -->
+      <div class="investment-card" id="investmentCard">
+        <div class="investment-label">Total Investment</div>
+        <div class="investment-row">
+          <span class="investment-amount" id="totalInvestment">—</span>
+          <span class="investment-change" id="investmentChange"></span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link" href="dashboard.html">
+          <span class="material-icons-round" style="font-size:20px">dashboard</span>
+          Dashboard
+        </a>
+        <a class="nav-link" href="prediction.html">
+          <span class="material-icons-round" style="font-size:20px">query_stats</span>
+          Prediction
+        </a>
+        <a class="nav-link" href="portfolio.html">
+          <span class="material-icons-round"
+            style="font-size:20px; vertical-align:text-bottom;">account_balance_wallet</span> Portfolio
+        </a>
+        <a class="nav-link" href="sentiment.html">
+          <span class="material-icons-round" style="font-size:20px; vertical-align:text-bottom;">analytics</span>
+          Sentiment
+        </a>
+        <a class="nav-link active" href="help-feedback.html">
+          <span class="material-icons-round" style="font-size:20px; vertical-align:text-bottom;">forum</span> Help &
+          Feedback
+        </a>
+        <a class="nav-link" href="about-us.html">
+          <span class="material-icons-round" style="font-size:20px; vertical-align:text-bottom;">info</span> About Us
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="logoutBtn" class="btn btn-secondary btn-full" type="button">
+          <span class="material-icons-round" style="font-size:18px">logout</span>
+          Sign Out
+        </button>
+      </div>
+    </aside>
+    <label for="sidebar-toggle" class="sidebar-overlay-label"></label>
+
+    <main class="main">
+      <header class="topbar" style="justify-content: center; text-align: center;">
+        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
+          <label for="sidebar-toggle" class="sidebar-toggle-label">
+            <span class="material-icons-round">menu</span>
+          </label>
+          <div>
+            <h1 class="page-title">Help & Feedback</h1>
+            <p style="margin-top:4px; color:var(--muted);">We value your thoughts and are here to help.</p>
+          </div>
+        </div>
+      </header>
+
+      <div style="display:flex; justify-content: center; padding-top: 20px;">
+        <!-- Form Section -->
+        <div style="width: 100%; max-width: 650px;">
+          <div class="feedback-form">
+            <h2 style="font-family:'Manrope',sans-serif; font-size:20px; margin-bottom: 20px;">Send a Message</h2>
+            <form id="feedbackForm" class="form">
+              <div style="display: flex; gap: 15px;">
+                <label style="flex:1;">
+                  Name
+                  <input type="text" id="fbName" required placeholder="Enter your name" />
+                </label>
+                <label style="flex:1;">
+                  Email
+                  <input type="email" id="fbEmail" required placeholder="Enter your email" />
+                </label>
+              </div>
+
+              <label style="margin-top: 15px;">
+                Type of request
+                <select id="fbType"
+                  style="margin-top:4px;width:100%;padding:12px;border-radius:var(--radius-sm);background:var(--surface-high);color:var(--text);border:1px solid var(--border);"
+                  required>
+                  <option value="help">Help / Support</option>
+                  <option value="feedback">Feedback / Suggestion</option>
+                </select>
+              </label>
+
+              <!-- Star Rating shown only for feedback -->
+              <div id="ratingContainer" style="margin-top: 15px;">
+                <label>Rate your experience</label>
+                <div class="star-rating">
+                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">★</label>
+                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">★</label>
+                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">★</label>
+                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">★</label>
+                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">★</label>
+                </div>
+              </div>
+
+              <label style="margin-top: 15px;">
+                Subject
+                <input type="text" id="fbSubject" placeholder="Brief subject" />
+              </label>
+
+              <label style="margin-top: 15px;">
+                Message
+                <textarea id="fbMessage" rows="5" required placeholder="Write your message here..."
+                  style="width:100%;padding:12px;border-radius:var(--radius-sm);background:var(--surface-high);color:var(--text);border:1px solid var(--border);resize:vertical;"></textarea>
+              </label>
+
+              <button class="btn" type="submit" style="margin-top: 20px; width: 100%;">Submit</button>
+              <p id="fbMsg" class="msg" style="margin-top: 15px; text-align: center;"></p>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/help-feedback.js"></script>
+</body>
+
+</html>
