@@ -4,7 +4,7 @@
 
 const CONFIG = {
   // Replace this with your actual separate Backend Vercel URL
-  API_BASE_URL: 'https://stockmarket-backend.vercel.app'
+  API_BASE_URL: 'https://stockmarket-backend-psi.vercel.app'
 };
 
 // Check if running on localhost or locally via file system
